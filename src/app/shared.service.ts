@@ -3,24 +3,32 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 
 import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 
 
 
 @Injectable()
 export class SharedService {
-    constructor(private http: HttpClient) {
+     baseUrl:string="";
 
+    constructor(private http: HttpClient) {
+        if(environment.production){
+            this.baseUrl="https://my-json-server.typicode.com/dlngupta/my-json-server/signupusers";
+        }
+        else{
+            this.baseUrl="http://localhost:3000/SignUpUsers";
+        }
     }
     private isLoggedIn = new BehaviorSubject<boolean>(false);
     getUserList(): Observable<any> {
-        return this.http.get("http://localhost:3000/SignUpUsers").pipe(map(data => { return data }))
+        return this.http.get(this.baseUrl).pipe(map(data => { return data }))
     }
     addUser(data: any) {
-        return this.http.post("http://localhost:3000/SignUpUsers", data);
+        return this.http.post(this.baseUrl, data);
     }
     getUser(data: any): Observable<any> {
-        return this.http.get("http://localhost:3000/SignUpUsers/" + data).pipe(map(data => {
+        return this.http.get(this.baseUrl + data).pipe(map(data => {
             return data;
         }))
     }
