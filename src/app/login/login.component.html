@@ -1,0 +1,30 @@
+  
+    <h2>My Sample Login Page</h2><br>    
+    <div class="login">    
+   <form name="form" (ngSubmit)="login.form.valid && loginUser(login.value)" #login="ngForm" novalidate>
+    <div>
+    <label for="userName">User Name</label>
+        <br>
+        <input type="email" [(ngModel)]="loginModel.email" required #userName="ngModel" name="userName" id="Uname">
+        <div *ngIf="login.submitted && userName.invalid"> 
+            <div class="error-text" *ngIf="userName.errors.required">User Name Required</div>
+            <div class="error-text" *ngIf="userName.errors?.email">Enter valid email address</div>
+        </div>
+    </div>    
+       <div>
+        <label for="password">Password</label><br>
+        <input type="password" [(ngModel)]="loginModel.password" required #password="ngModel" name="password" id="Pass">
+        <div *ngIf="login.submitted && password.invalid">
+            <div class="error-text" *ngIf="password.errors.required">Password Required</div>
+        </div>
+       </div>
+        <br>
+
+        <button style="padding: 8px">Login</button><br>
+        <span class="error-text">{{emailMesaage}}</span>
+        <span class="error-text">{{passwordMessage}}</span>
+        <br>
+        <span style="color: bisque;">Create an new account</span> &nbsp; <a routerLink="/register">Signup</a>
+   </form>
+</div>  
+

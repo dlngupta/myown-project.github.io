@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "SignUpUsers": [
+    {
+      "firstName": "DLN ",
+      "lastName": "Gupta",
+      "email": "dln.gupta5@gmail.com",
+      "phone": "9505883727",
+      "password": "Gupta@433",
+      "confirmPassword": "Gupta@433",
+      "id": 1
+    },
+    {
+      "firstName": "Lakshmi",
+      "lastName": "N",
+      "email": "dln.gupta433@gmail.com",
+      "phone": 9505883727,
+      "password": "Gupta@433",
+      "confirmPassword": "Gupta@433",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

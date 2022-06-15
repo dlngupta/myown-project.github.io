@@ -1,0 +1,61 @@
+<h2>My Sample Register Page</h2><br>
+<div class="login">
+    <form [formGroup]="registration" (ngSubmit)="registerUser()">
+        <div>
+            <label>First Name</label><br>
+            <input type="text" id="Pass" formControlName="firstName">
+            <div class="error-text" *ngIf="submitted && registration.controls.firstName.errors?.required">
+                First Name is required
+            </div>
+        </div>
+        <div>
+            <label>Last Name</label><br>
+            <input type="text" id="Pass" formControlName="lastName">
+            <div class="error-text" *ngIf="submitted && registration.controls.lastName.errors?.required">
+                Last Name is required
+            </div>
+        </div>
+        <div>
+            <label>Email</label><br>
+            <input type="text" id="Pass" formControlName="email">
+            <div class="error-text" *ngIf="submitted && registration.controls.email.errors?.required">
+                Email is required
+            </div>
+            <div class="error-text" *ngIf="submitted && registration.controls.email.errors?.email">
+                Email must be a valid email address
+            </div>
+        </div>
+        <div>
+            <label>Phone</label><br>
+            <input type="number" maxlength="10" id="Pass" formControlName="phone">
+            <div class="error-text" *ngIf="submitted && registration.controls.phone.errors?.required">
+                Phone Number is required
+            </div>
+            <div class="error-text" *ngIf="submitted && registration.controls.phone.errors?.minlength">
+                Enter valid phone number with 10 digits
+            </div>
+        </div>
+        <div>
+            <label>Password</label><br>
+            <input type="password" id="Pass" formControlName="password">
+            <div  class="error-text" *ngIf="submitted && registration.controls.password.errors?.required">
+                Password is required
+            </div>
+        </div>
+        <div>
+            <label>Confirm Password</label><br>
+            <input type="password" id="Pass" formControlName="confirmPassword">
+            <div class="error-text" *ngIf="submitted && registration.controls.confirmPassword.errors?.required">
+                Confirm Password is required
+            </div>
+           
+                <div class="error-text" *ngIf="registration.controls.confirmPassword.errors?.mustMatch">Passsword and
+                    Confirm Password didn't match.</div>
+        </div>
+        <br>
+        <button style="padding: 8px">Register</button><br>
+        <span style="color: bisque;">Already have an account</span> &nbsp; <a routerLink="/login">Login</a>
+    </form>
+    <!-- <button (click)="getUserList()">User List</button>
+    <button (click)="getUserById ()">Get User</button> -->
+</div>
