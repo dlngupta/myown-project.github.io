@@ -1,20 +1,28 @@
-{{userName}}<button style="color:red;float:right" (click)="logout()">Logout</button>
-<h3>Welcome to admin page</h3>
-<!-- <p-table [columns]="cols" [value]="products">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table> -->
+
+    <app-logout-bar [header]="headerText"></app-logout-bar>
+
+<table class="table table-sm " style="width: 50%">
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th colspan="2">Actions</th>
+    
+    </thead>
+    <tbody>
+            <tr *ngFor="let user of userList">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td><i class="fas fa-edit mr-2"></i> </td>
+                <td><i class="fas fa-trash"></i></td>
+            </tr>
+    </tbody>
+</table>
+
+
+
 
 

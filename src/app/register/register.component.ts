@@ -29,19 +29,41 @@ export class RegisterComponent implements OnInit {
 }
   )
   
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
 
+  }
+  regValidationText:string="";
   registerUser() {
     this.submitted = true;
     if(!this.registration.valid){
       //alert("please fill the form details");
       return;
     }
-    this.service.addUser(this.registration.value).subscribe(data=>{
-      alert("user added successfully");
-      this.registration.reset();
-      this.submitted=false;
-      this.router.navigate(['/login']);
-    });
+    this.service.getUser('email',this.registration.get('email').value).subscribe(data=>{
+      let phone=this.registration.get('phone').value;
+      let email=this.registration.get('email').value;
+      if(data.filter(d=>d.email==email).length>0){
+        this.regValidationText="Email already exists";  
+        return;
+      }
+      // if(data.filter(d=>d.phone==phone).length>0){
+      //   this.regValidationText="Phone number already exists";
+      //   return;
+      // }
+     
+      this.service.addUser(this.registration.value).subscribe(data=>{
+        alert("user added successfully");
+        this.registration.reset();
+        this.submitted=false;
+        this.router.navigate(['/login']);
+      });
+    })
+    
   }
   MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
@@ -72,11 +94,11 @@ export class RegisterComponent implements OnInit {
     })
    
   }
-  getUserById(){
-      this.service.getUser("my First List").subscribe(data=>{
-        console.log(JSON.stringify(data));
-      })
-  }
+  // getUserById(){
+  //     this.service.getUser("my First List").subscribe(data=>{
+  //       console.log(JSON.stringify(data));
+  //     })
+  // }
   
 
 }

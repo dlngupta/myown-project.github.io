@@ -21,14 +21,26 @@ export class SharedService {
         }
     }
     private isLoggedIn = new BehaviorSubject<boolean>(false);
+    private isAdminAccess=new BehaviorSubject<boolean>(false);
+        
     getUserList(): Observable<any> {
-        return this.http.get(this.baseUrl).pipe(map(data => { return data }))
+        return this.http.get(this.baseUrl).pipe(map(data => { return data; }))
     }
     addUser(data: any) {
         return this.http.post(this.baseUrl, data);
     }
-    getUser(data: any): Observable<any> {
-        return this.http.get(this.baseUrl + data).pipe(map(data => {
+    getUser(param:string,value:string): Observable<any> {
+        return this.http.get(this.baseUrl +'/?'+param+'='+value).pipe(map(data => {
+            return data;
+        }))
+    }
+    updateUser(data:any){
+        return this.http.put(this.baseUrl+"/"+data.id,data).pipe(map(data=>{
+            return true;
+        }));
+    }
+    verifySignUpUserExists(data:any):Observable<any>{
+        return this.http.get(this.baseUrl +'/?email='+data.email+'&phone='+data.phone).pipe(map(data => {
             return data;
         }))
     }
@@ -37,6 +49,13 @@ export class SharedService {
     }
     getIsUserLoggedIn(){
         return this.isLoggedIn.asObservable();
+    }   
+    updateIsAdmin(val){
+        this.isAdminAccess.next(val);
+
+    }
+    getIsAdminAccess(){
+     return this.isAdminAccess.asObservable();
     }
 
 }

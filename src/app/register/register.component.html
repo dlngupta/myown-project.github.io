@@ -1,5 +1,6 @@
-<h2>My Sample Register Page</h2><br>
+<h2>My Sample Register Page</h2>
 <div class="login">
+    
     <form [formGroup]="registration" (ngSubmit)="registerUser()">
         <div>
             <label>First Name</label><br>
@@ -27,10 +28,12 @@
         </div>
         <div>
             <label>Phone</label><br>
-            <input type="number" maxlength="10" id="Pass" formControlName="phone">
+            <input type="text" maxlength="10"  id="Pass" numbersOnly formControlName="phone"
+            >
             <div class="error-text" *ngIf="submitted && registration.controls.phone.errors?.required">
                 Phone Number is required
             </div>
+            
             <div class="error-text" *ngIf="submitted && registration.controls.phone.errors?.minlength">
                 Enter valid phone number with 10 digits
             </div>
@@ -54,6 +57,7 @@
         </div>
         <br>
         <button style="padding: 8px">Register</button><br>
+        <span class="error-text">{{regValidationText}}</span><br>
         <span style="color: bisque;">Already have an account</span> &nbsp; <a routerLink="/login">Login</a>
     </form>
     <!-- <button (click)="getUserList()">User List</button>

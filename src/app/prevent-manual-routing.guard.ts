@@ -21,8 +21,33 @@ export class PreventManualRoutingGuard implements CanActivate {
     }
     else{
       this.router.navigate(['/login']);
-      return false
+      return false;
     }
   }
   
+}
+@Injectable({
+  providedIn:'root'
+})
+export class PreventAdminAccess implements CanActivate{
+  isAdminAccess:boolean;
+  constructor(private sharedService:SharedService,private router:Router){
+
+  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
+     
+    
+    this.sharedService.getIsAdminAccess().subscribe(data=>{
+      this.isAdminAccess= data;
+    });
+    // if(this.isAdminAccess){
+    //   this.router.navigate(['/admin']);
+    //   return true;
+    // }
+    // else{
+    //   this.router.navigate(['/login']);
+    //   return false
+    // }
+    return this.isAdminAccess;
+  }
 }

@@ -18,6 +18,7 @@
             <div class="error-text" *ngIf="password.errors.required">Password Required</div>
         </div>
        </div>
+       <a href="#" (click)="openModal(template)" style="float: right">Forgot Password</a>
         <br>
 
         <button style="padding: 8px">Login</button><br>
@@ -27,4 +28,51 @@
         <span style="color: bisque;">Create an new account</span> &nbsp; <a routerLink="/register">Signup</a>
    </form>
 </div>  
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Change Password</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="background-color: #23463f">
+       
+        <form [formGroup]="passwordChange" (ngSubmit)="changePassword()">
+                <label>Email</label> <br>
+               <input type="text" id="pass" formControlName="email"><br>
+               <div class="error-text" *ngIf="submitted && passwordChange.controls.email.errors?.required">
+                   Email required
+               </div>  
+               <div class="error-text" *ngIf="submitted && passwordChange.controls.email.errors?.email">
+                Enter valid Email
+            </div>  
+           
+            
+               <label>New Password</label> <br>
+               <input type="password" id="pass" formControlName="newPwd"><br>
 
+               <div class="error-text" *ngIf="submitted && passwordChange.controls.newPwd.errors?.required">
+                    New Password required
+               </div>
+               <label>Confirm Password</label> <br>
+               <input type="password" id="pass" formControlName="confirmPwd" >
+               <div class="error-text" *ngIf="submitted && passwordChange.controls.confirmPwd.errors?.required">
+                    Confirm Password required
+               </div>
+               <div class="error-text" *ngIf="passwordChange.controls.confirmPwd.errors?.mustMatch">Passsword and
+                Confirm Password didn't match.</div>
+                <div class="error-text" *ngIf="submitted && !passwordChange.controls.confirmPwd.errors?.mustMatch && errorChnagePassword">
+                    {{errorChnagePassword}}
+                </div> 
+               <br>
+               <div style="margin-top: 5px;float: right;">
+               <button  class="btn btn-primary mr-2" popover="Vivamus sagittis">Update </button>
+               <input type="button" value="Cancel" class="btn btn-danger" (click)="modalRef?.hide()"  tooltip="Vivamus sagittis">
+            </div>
+        </form>
+       
+        
+    
+       
+    </div>
+  </ng-template>
