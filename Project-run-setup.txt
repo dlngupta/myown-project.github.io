@@ -1,0 +1,28 @@
+Setting Up Angular project
+ 1. Clone the repo 
+ 2. Run npm install
+ 3. Run ng serve
+
+
+To run DB.json file 
+
+1.Run this command  json-server --watch db.json
+
+
+
+To use Hosted application follow below steps
+ 1. To Access angular application hit this url : https://dlngupta.github.io/myown-project.github.io
+ 2. To Access db.json hit this url : https://my-json-server.typicode.com/dlngupta/my-json-server/signupusers
+
+
+To publish the application into git hub pages use below steps
+ Step 1: git pull
+ Step 2: ng build --prod --base-href "https://dlngupta.github.io/myown-project.github.io/"
+ Step 3: git add .
+ Step 4: git commit -m 'commit message'
+ Step 5: git pull
+ Step6: git push 
+
+
+
+
